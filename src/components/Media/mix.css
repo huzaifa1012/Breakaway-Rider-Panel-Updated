@@ -1,0 +1,21 @@
+
+.ant-input-affix-wrapper {
+font-size: 18px;
+}
+.ant-input-affix-wrapper{
+    background-color: #E8F0FE !important;
+}
+
+/* SWAL2.0*/
+/* Ok Button */
+.swal2-styled.swal2-confirm {
+    background-color: #1677FF;
+}
+/* Delete Btn */
+.swal2-styled.swal2-confirm  {
+background-color: red !important;
+}
+/* Cancel Btn */
+.swal2-styled.swal2-cancel {
+    background-color: #1677FF !important;
+}

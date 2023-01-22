@@ -1,0 +1,64 @@
+body {
+}
+.register-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+
+    height: 100vh;
+}.register {
+    width: 89vw;
+    max-width: 40vw;
+}
+.heading-h1 {
+color: white;
+}
+/* Inputs */
+.ant-input {
+    background-color:transparent;
+}
+.ant-input-affix-wrapper  {
+    font-size: 14px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.836);
+    padding: 10px;
+
+}
+/* Button */
+.ant-btn  {
+    font-size: 16px;
+    height: auto;
+    padding: 8px;
+    width: 89vw;
+    max-width: 40vw;
+
+}
+.bottom {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+.bottom a {
+    color: white;
+}
+
+@media (min-width:10px )and (max-width:425px){
+
+
+    .register {
+        width: 89vw;
+        max-width:100%;
+
+    }
+    .ant-btn  {
+        font-size: 16px;
+        height: auto;
+        padding: 8px;
+        width: 89vw;
+        max-width:100%;
+        
+    }
+
+    
+}

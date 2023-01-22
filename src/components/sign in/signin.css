@@ -1,0 +1,90 @@
+@font-face {
+  font-family: poppinsa;
+  src: url("../../fonts/Poppins-Bold.ttf");
+}
+@font-face {
+  font-family: poppinsaM;
+  src: url("../../fonts/Poppins-Medium.ttf");
+}
+@font-face {
+  font-family: poppinsaLight;
+  src: url("../../fonts/Poppins-Light.ttf");
+}
+body {
+  background-color: #28313b;
+  background: #000428; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #004e92,
+    #1677ff
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #004e92,
+    #1677ff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.signin-head {
+  display: flex;
+  justify-content: center;
+}
+.logoS {
+  margin: 0px auto;
+  width: 130px;
+}
+.signin-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+.signin {
+  width: 89vw;
+  max-width: 40vw;
+}
+.heading-h1 {
+  font-family: poppinsa;
+  color: white;
+}
+/* Inputs */
+.ant-input {
+  background-color: transparent;
+}
+.ant-input-affix-wrapper {
+  font-size: 14px;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.836);
+  padding: 10px;
+}
+/* Button */
+.ant-btn {
+  font-size: 16px;
+  height: auto;
+  padding: 8px;
+  width: 89vw;
+  max-width: 40vw;
+}
+.bottom {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+.bottom a {
+  color: white;
+}
+
+/* Sider */
+@media (min-width: 10px) and (max-width: 425px) {
+    .signin {
+    width: 89vw;
+    max-width: 100%;
+  }
+  .ant-btn {
+    font-size: 16px;
+    height: auto;
+    padding: 8px;
+    width: 89vw;
+    max-width: 100%;
+  }
+}
