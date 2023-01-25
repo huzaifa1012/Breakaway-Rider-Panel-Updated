@@ -1,14 +1,18 @@
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBU9ZNWCxpUIuND5AC84RZo9bofiQN4y9E",
-  authDomain: "riders-panel-breakaway.firebaseapp.com",
-  projectId: "riders-panel-breakaway",
-  storageBucket: "riders-panel-breakaway.appspot.com",
-  messagingSenderId: "77910270163",
-  appId: "1:77910270163:web:ce078953354614ba1b3426",
+  apiKey: "AIzaSyDJ2z-Husd-0cj8IzHyH6K8IJaS0K5w15k",
+  authDomain: "breakaway-93eaa.firebaseapp.com",
+  projectId: "breakaway-93eaa",
+  storageBucket: "breakaway-93eaa.appspot.com",
+  messagingSenderId: "982366355893",
+  appId: "1:982366355893:web:9d10de9a9437d61c6f99fc",
+  measurementId: "G-3B1QG8MPEH"
 };
 
 export const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 export const db = getFirestore(app);
+

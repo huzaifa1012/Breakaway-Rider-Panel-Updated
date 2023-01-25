@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import "./orderCard.css";
 import { db } from "../../firebase";
-import { collection, query, onSnapshot } from "firebase/firestore";
+import { collection, query, onSnapshot, where } from "firebase/firestore";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function OrderCard() {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   let [rider, setRider] = useState([]);
   function FetchRiderData() {
-    const q = query(collection(db, "riderdata"));
+    let collectionRef = collection(db, "riderdata");
+    let collectionQuery = where("uid", "==", "CA");
+    const q = query(collectionRef);
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const riderdata = [];
       querySnapshot.forEach((doc) => {
@@ -26,16 +28,12 @@ export default function OrderCard() {
   }, []);
 
   function viewOrder(data) {
-    navigate("/viewOrder",{state:{itemId:data}})
-    console.log(data)
-    
+    navigate("/viewOrder", { state: { itemId: data } });
+    console.log(data);
   }
 
   return (
     <>
-
-
-
       {rider.map((data, index) => {
         return (
           <div key={index}>
@@ -68,7 +66,6 @@ export default function OrderCard() {
                       <b>Pick From</b>
                     </p>
                     <p>{data.pick}</p>
-                    
                   </div>
                   <div className="drop">
                     <p>
@@ -77,7 +74,14 @@ export default function OrderCard() {
                     <p>{data.drop}</p>
                   </div>
                   <div className="btn-wrap">
-                    <button className="view-Btn" onClick={()=>{viewOrder(data)}}>View Order </button>
+                    <button
+                      className="view-Btn"
+                      onClick={() => {
+                        viewOrder(data);
+                      }}
+                    >
+                      View Order{" "}
+                    </button>
                   </div>
                 </div>
               </div>

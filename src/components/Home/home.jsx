@@ -13,12 +13,7 @@ export default function Home() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
-        console.log("han he");  
-        // navigate("/main");
       } else {
-        // User is signed out
-        //     // ...
-        console.log("Nhi he");
         navigate("/signin");
       }
     });

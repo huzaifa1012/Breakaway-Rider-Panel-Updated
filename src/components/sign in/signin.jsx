@@ -10,6 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import "../Media/mix.css";
 import "./signin.css";
 
@@ -17,35 +18,38 @@ const Signin = () => {
   const navigate = useNavigate();
   const [riderEmail, setriderEmail] = useState("");
   const [riderPassword, setriderPassword] = useState("");
+  const [isLoad, setIsLoad] = useState(false);
 
   function SigninUser() {
-    // alert(riderEmail);
-    // alert(riderPassword);
-
     const auth = getAuth();
 
-    signInWithEmailAndPassword(auth, riderEmail, riderPassword)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-        navigate("/");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const wrongEmaPasPopUp = () => {
-          alert("sorry");
-          // Swal.fire({
-          //   icon: "error",
-          //   title: "Oops...",
-          //   text: "Please enter correct email & password",
-          //   footer: '<a href="">Why do I have this issue?</a>',
-          // });
-        };
-        wrongEmaPasPopUp();
+    if (riderEmail.length > 8 && riderPassword.length > 5) {
+      setIsLoad(true);
+      signInWithEmailAndPassword(auth, riderEmail, riderPassword)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          navigate("/");
+          setIsLoad(false);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `${errorMessage}`,
+          });
+        });
+      setIsLoad(false);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `Invalid data`,
       });
-    console.log(riderEmail);
-    console.log(riderPassword);
+      setIsLoad(false);
+    }
   }
 
   return (
@@ -100,8 +104,13 @@ const Signin = () => {
                 htmlType="submit"
                 className="login-form-button"
                 onClick={SigninUser}
+                disabled={isLoad}
               >
-                Log in
+                {isLoad ? (
+                  <div className="spinner-border text-white bg-primary"></div>
+                ) : (
+                  "Log In"
+                )}
               </Button>
               <div className="bottom">
                 <p href="">
