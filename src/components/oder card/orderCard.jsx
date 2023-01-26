@@ -1,23 +1,24 @@
 import React, { useEffect } from "react";
 import "./orderCard.css";
-import { db } from "../../firebase";
+import { db, app } from "../../firebase";
 import { collection, query, onSnapshot, where } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+const auth = getAuth();
+console.log(auth);
 export default function OrderCard() {
   let navigate = useNavigate();
   let [rider, setRider] = useState([]);
   function FetchRiderData() {
-    let collectionRef = collection(db, "riderdata");
-    let collectionQuery = where("uid", "==", "CA");
+    let collectionRef = collection(db, "sendToRider");
+    // let collectionQuery = where("riderId", "==", auth.currentUser.uid);
     const q = query(collectionRef);
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const riderdata = [];
       querySnapshot.forEach((doc) => {
-        riderdata.push(doc.data());
+        riderdata.push({ ...doc.data(), id: doc.id });
         let data = doc.data();
-        console.log(riderdata);
       });
       setRider(riderdata);
     });
@@ -55,7 +56,7 @@ export default function OrderCard() {
                 <div className="cardBody">
                   <div className="secHead">
                     <p className="item">
-                      <b> Item: {data.title} </b>
+                      <b> Item: 'Hello' </b>
                     </p>
                     <p className="price">
                       <b>$ {data.price}</b>
@@ -65,13 +66,13 @@ export default function OrderCard() {
                     <p>
                       <b>Pick From</b>
                     </p>
-                    <p>{data.pick}</p>
+                    <p>{data.customerPickLocation}</p>
                   </div>
                   <div className="drop">
                     <p>
                       <b>Drop Here</b>
                     </p>
-                    <p>{data.drop}</p>
+                    <p>{data.customerDropLocation}</p>
                   </div>
                   <div className="btn-wrap">
                     <button
