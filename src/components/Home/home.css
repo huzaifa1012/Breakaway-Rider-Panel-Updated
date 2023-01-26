@@ -1,4 +1,5 @@
 .home-main {
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
     background-color: #dddddd;
 }

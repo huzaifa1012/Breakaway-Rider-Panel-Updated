@@ -17,7 +17,7 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc,doc } from "firebase/firestore";
 import { db } from "../../firebase.js";
 import { useNavigate } from "react-router-dom";
 const Register = () => {
@@ -45,6 +45,8 @@ const Register = () => {
             phone: riderPhone,
             email: riderEmail,
             id: auth.currentUser.uid,
+            doc:user.uid
+            // authID: auth.user.uid,
           });
           navigate("/");
           setIsLoad(false);

@@ -19,13 +19,46 @@ import { getAuth, signOut, deleteUser } from "firebase/auth";
 import { ImProfile } from "react-icons/im";
 import { BiLogOutCircle } from "react-icons/bi";
 import Swal from "sweetalert2";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
+import { db } from "../../../firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 import logo from "./indexwhite.png";
 import "./header.css";
+import { useEffect, useState } from "react";
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
+  const [user, setUser] = useState("");
+  function abc() {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user.uid);
+        const q = query(
+          collection(db, "allRiders"),
+          where("id", "==", user.uid)
+        );
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+          const allRiders = [];
+          querySnapshot.forEach((doc) => {
+            let data = doc.data();
+            console.log(data.name);
+            setUser(data);
+          });
+        });
+        return () => unsubscribe();
+      } else {
+        console.log("user Not Signed In");
+      }
+    });
+  }
+
+  useEffect(() => {
+    abc();
+  }, []);
+
   //Drawer Starts
   const [state, setState] = React.useState({
     top: false,
@@ -59,15 +92,13 @@ function ResponsiveAppBar() {
       if (result.isConfirmed) {
         const auth = getAuth();
         const user = auth.currentUser;
-    
+
         deleteUser(user)
           .then(() => {})
           .catch((error) => {});
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }
     });
-
-    //
   };
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -96,8 +127,13 @@ function ResponsiveAppBar() {
               src="https://oliver-andersen.se/wp-content/uploads/2018/03/cropped-Profile-Picture-Round-Color.png"
               alt=""
             />
-            <h2>Rider Name</h2>
-            <p>294787472472729</p>
+            {/* {data.map((data, index) => {
+              <div key={index}> */}
+                <h2>{user.name}</h2>
+                <p>{user.email}</p>
+                <p>{user.phone}</p>
+              {/* </div>;
+            })} */}
             <p>
               {" "}
               <ImProfile style={{ paddingTop: "10px" }} /> Account Info
@@ -263,4 +299,5 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
+
 export default ResponsiveAppBar;

@@ -12,7 +12,6 @@ export default function OrderCard() {
   let [rider, setRider] = useState([]);
   function FetchRiderData() {
     let collectionRef = collection(db, "sendToRider");
-    // let collectionQuery = where("riderId", "==", auth.currentUser.uid);
     const q = query(collectionRef);
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const riderdata = [];
@@ -42,8 +41,8 @@ export default function OrderCard() {
               <div className="cardMain">
                 <div className="cardHead">
                   <div className="card-left">
-                    <h2>{data.name}</h2>
-                    <p>{data.phone}</p>
+                    <h2>{data.customerName}</h2>
+                    <p>{data.customerPhone}</p>
                   </div>
                   <div className="card-right">
                     <img
@@ -56,10 +55,10 @@ export default function OrderCard() {
                 <div className="cardBody">
                   <div className="secHead">
                     <p className="item">
-                      <b> Item: 'Hello' </b>
+                      <b> Item: {"data.productName"} </b>
                     </p>
                     <p className="price">
-                      <b>$ {data.price}</b>
+                      <b> {data.customerPayment}</b>
                     </p>
                   </div>
                   <div className="pick">

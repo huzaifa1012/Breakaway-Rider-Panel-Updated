@@ -39,7 +39,7 @@ const Signin = () => {
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: `${errorMessage}`,
+            text: "Wrong email/password",
           });
         });
       setIsLoad(false);
