@@ -2,43 +2,28 @@ import React, { useState } from "react";
 import ResponsiveAppBar from "../header/Header";
 import { useLocation } from "react-router-dom";
 export default function ViewOrder() {
-  const [name, setName] = useState("");
-  const [pick, setPick] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [drop, setDrop] = useState("");
-  const [payment, setPayment] = useState("");
-  const [id, setId] = useState("");
-  const itemID = useLocation();
-  let data = itemID.state.itemId;
-  console.log(data.customerEmail)
-  // setName(data.customerName);
-  // setPick(data.customerPickLocation);
-  // setDrop(data.customerDropLocation);
-  // setEmail(data.customerEmail);
-  // setPhone(data.customerPhone);
-  // setPayment(data.customerPayment);
+  const location = useLocation();
+  let data = location.state.data;
+
+  const SuccessFullDelivered = () => {
+    console.log(
+      "Bro Yaha successfully delivered ki functionallity Lgadijye "
+    );
+  };
+
   return (
     <>
       <ResponsiveAppBar />
       <h1 style={{ textAlign: "center" }}>View Order Details</h1>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <div
-          style={{
-            border: "2px solid black",
-            background: "#f0f0f0",
-            textAlign: "center",
-            width: "fit-content",
-            padding: "20px",
-          }}
-        >
-          <h2>{name}</h2>
-          <h2>{pick}</h2>
-          <h2>{drop}</h2>
-          <h2>{email}</h2>
-          <h2>{phone}</h2>
-          <h2>{payment}</h2>
-          <button onClick={() => alert("ALLAH")}>Send</button>
+        <div style={{ fontSize: "20px", color: "white" }}>
+          <h3>Name: {data.customerName}</h3>
+          <h3>Phone : {data.customerPhone}</h3>
+          <h3>Email: {data.customerEmail}</h3>
+          <h3>Pick From: {data.customerPickLocation}</h3>
+          <h3>Drop Here: {data.customerDropLocation}</h3>
+          <h3>Payment Currency: {data.customerPayment}</h3>
+          <button onClick={SuccessFullDelivered}>Delivered</button>
         </div>
       </div>
     </>

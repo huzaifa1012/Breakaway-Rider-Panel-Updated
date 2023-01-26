@@ -6,7 +6,7 @@ import { getAuth } from "firebase/auth";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 const auth = getAuth();
-console.log(auth);
+// console.log(auth);
 export default function OrderCard() {
   let navigate = useNavigate();
   let [rider, setRider] = useState([]);
@@ -28,7 +28,7 @@ export default function OrderCard() {
   }, []);
 
   function viewOrder(data) {
-    navigate("/viewOrder", { state: { itemId: data } });
+    navigate("/viewOrder", {state:{itemId:data}});
     console.log(data);
   }
 

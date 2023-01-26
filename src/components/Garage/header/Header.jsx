@@ -35,7 +35,6 @@ function ResponsiveAppBar() {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user.uid);
         const q = query(
           collection(db, "allRiders"),
           where("id", "==", user.uid)
@@ -44,7 +43,6 @@ function ResponsiveAppBar() {
           const allRiders = [];
           querySnapshot.forEach((doc) => {
             let data = doc.data();
-            console.log(data.name);
             setUser(data);
           });
         });
