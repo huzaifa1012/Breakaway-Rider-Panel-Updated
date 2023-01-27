@@ -12,7 +12,6 @@ export default function ViewOrder() {
   const [click, setClick] = useState(false);
   const location = useLocation();
   let data = location.state.itemId;
-
   const SuccessFullDelivered = () => {
     let collectionRef = collection(db, "deliveredProducts");
     setClick(true);
@@ -24,6 +23,7 @@ export default function ViewOrder() {
       pickLocation: data.customerPickLocation,
       dropLocation: data.customerDropLocation,
       deliveredOn: new Date().toLocaleString(),
+      riderName: data.riderName,
     }).then((response) => {
       let deleteRef = doc(db, "sendToRider", data.id);
       deleteDoc(deleteRef).then((response) => {
