@@ -1,10 +1,10 @@
 @font-face {
-    font-family: poppinsaM;
-    src: url("../../../fonts/Poppins-Light.ttf");
+  font-family: poppinsaM;
+  src: url("../../../fonts/Poppins-Light.ttf");
 }
 @font-face {
-    font-family: poppinsB;
-    src: url("../../../fonts/Poppins-Regular.ttf");
+  font-family: poppinsB;
+  src: url("../../../fonts/Poppins-Regular.ttf");
 }
 .view-order-wrap {
   width: 100%;
@@ -13,8 +13,8 @@
 }
 
 .view-order-main {
-padding-top: 20px;
-    overflow-wrap: break-word;
+  padding-top: 20px;
+  overflow-wrap: break-word;
   max-width: 500px;
   width: 100vw;
   height: 1000px;
@@ -29,28 +29,53 @@ padding-top: 20px;
   margin-bottom: 0px;
 }
 .view-card-heading h5 {
-    text-align: justify;
+  text-align: justify;
 }
 .property-of-view-Card {
-    opacity: 0.9;
-
-    font-family: poppinsaM;
+  opacity: 0.9;
+  font-family: poppinsaM;
 }
 .prop-value-of-view-card {
-    text-align: justify;
-    font-family: poppinsB;
+  text-align: justify;
+  font-family: poppinsB;
 }
 .view-top {
   width: 92%;
   margin: 0px auto;
   background-color: #f0f0f0;
   border-radius: 4px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+
   padding: 10px;
 }
 .view-bottom {
   width: 92%;
   margin: 0px auto;
+  /* margin-top: 10px; */
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  padding: 10px;
+}
+.view-card-bottom {
+    width: 92%;
+  margin: 0px auto;
   background-color: #f0f0f0;
   border-radius: 4px;
   padding: 10px;
+  margin-top: 10px;
+  display: flex;
+  margin-bottom: 20px;
+
+  justify-content: right;
+}
+.Delivered_BTN {
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(0, 195, 0);
+  color: white;
+  padding: 5px 20px;
+  font-family: poppinsaM;
 }
