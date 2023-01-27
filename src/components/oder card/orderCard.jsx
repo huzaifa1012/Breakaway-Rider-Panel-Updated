@@ -29,7 +29,6 @@ export default function OrderCard() {
 
   function viewOrder(data) {
     navigate("/viewOrder", {state:{itemId:data}});
-    console.log(data);
   }
 
   return (
