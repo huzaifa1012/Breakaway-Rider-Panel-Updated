@@ -3,11 +3,12 @@ import ResponsiveAppBar from "../header/Header";
 import { useLocation } from "react-router-dom";
 export default function ViewOrder() {
   const location = useLocation();
-  let data = location.state.data;
-
+  let data = location.state.itemId;
+  console.log(data);
   const SuccessFullDelivered = () => {
     console.log(
-      "Bro Yaha successfully delivered ki functionallity Lgadijye "
+      "Bro Yaha successfully delivered ki functionallity Lgadijye ",
+      location.state.data
     );
   };
 
