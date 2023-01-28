@@ -7,12 +7,13 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 const auth = getAuth();
 // console.log(auth);
-export default function OrderCard() {
+export default function OrderCard({ id }) {
   let navigate = useNavigate();
   let [rider, setRider] = useState([]);
   function FetchRiderData() {
     let collectionRef = collection(db, "sendToRider");
-    const q = query(collectionRef);
+    let collectionQuery = where("riderId", "==", id);
+    const q = query(collectionRef, collectionQuery);
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const riderdata = [];
       querySnapshot.forEach((doc) => {
@@ -28,7 +29,7 @@ export default function OrderCard() {
   }, []);
 
   function viewOrder(data) {
-    navigate("/viewOrder", {state:{itemId:data}});
+    navigate("/viewOrder", { state: { itemId: data } });
   }
 
   return (
@@ -54,7 +55,7 @@ export default function OrderCard() {
                 <div className="cardBody">
                   <div className="secHead">
                     <p className="item">
-                      <b> Item: {"data.productName"} </b>
+                      <b>Customer Currency</b>
                     </p>
                     <p className="price">
                       <b> {data.customerPayment}</b>
